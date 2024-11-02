@@ -19,10 +19,10 @@ def main():
     logger = init_logger(__name__, debug=args.verbose)
 
     if args.version:
-        get_version()
+        get_version(logger)
 
     if args.init:
-        init()
+        init(logger)
 
 
 if __name__ == "__main__":
