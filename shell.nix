@@ -8,8 +8,6 @@ in with pkgs; mkShell {
     pythonPackages.python
     pythonPackages.black
     pythonPackages.isort
-    pythonPackages.autopep8
-    pythonPackages.pylint
     pythonPackages.venvShellHook
   ];
   venvDir = "./.venv";
@@ -18,6 +16,5 @@ in with pkgs; mkShell {
   '';
   postShellHook = ''
     unset SOURCE_DATE_EPOCH
-    clear
   '';
 }
