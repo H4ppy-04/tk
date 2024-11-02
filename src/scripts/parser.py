@@ -14,7 +14,7 @@ class Parser:
         """Constructor for `Parser`"""
         self.parser = argparse.ArgumentParser(
             description="A task manager utility",
-            epilog="Author: Joshua Rose",
+            epilog="https://github.com/H4ppy-04/tk",
         )
 
         self.logger = init_logger(__name__)
