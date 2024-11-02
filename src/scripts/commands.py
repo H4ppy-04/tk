@@ -1,7 +1,42 @@
 """src/scripts/commands.py"""
 
 import os
+import socket
+import urllib.request
 from typing import Optional
+
+
+def get_license(logger) -> None:
+    """Reads local LICENSE file.
+
+    As a fallback, reads the online file.
+
+    :logger: TODO
+    :returns: TODO
+
+    """
+
+    def is_connected() -> bool:
+        """test internet connection"""
+        try:
+            socket.setdefaulttimeout(3)
+            with socket.create_connection(("8.8.8.8", 53)):
+                return True
+        except (socket.timeout, socket.error):
+            pass
+        return False
+
+    if os.path.exists("LICENSE"):
+        with open("LICENSE") as fd:
+            print(fd.read())
+    elif is_connected():
+        with urllib.request.urlopen(
+            "https://raw.githubusercontent.com/H4ppy-04/tk/refs/heads/main/LICENSE"
+        ) as response:
+            print(response.read().decode("utf-8"))
+    else:
+        logger.error("Could not read license")
+        return None
 
 
 def get_version(logger) -> str:

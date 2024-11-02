@@ -40,6 +40,12 @@ class Parser:
         )
 
         self.parser.add_argument(
+            "--license",
+            action="store_true",
+            help="Display license information",
+        )
+
+        self.parser.add_argument(
             "--init",
             action="store_true",
             help="Initialize task file. WARNING: This will overwrite existing task data!",

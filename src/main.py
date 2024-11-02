@@ -6,7 +6,7 @@ import sys
 
 from logger import init_logger
 from scripts import Parser
-from scripts.commands import get_version, init
+from scripts.commands import get_license, get_version, init
 
 
 def main():
@@ -21,8 +21,11 @@ def main():
     if args.version:
         get_version(logger)
 
-    if args.init:
+    elif args.init:
         init(logger)
+
+    elif args.license:
+        get_license(logger)
 
 
 if __name__ == "__main__":
