@@ -1,4 +1,4 @@
-<h1>Task Manager</h1>
+<h1 align="center">Task Manager</h1>
 
 <h2 align="center">The Uncomprimising Task Manager</h2>
 
