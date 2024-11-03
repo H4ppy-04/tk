@@ -1,0 +1,13 @@
+black==24.4.0
+click==8.1.7
+importlib_metadata==7.1.0
+isort==5.13.2
+mypy_extensions==1.0.0
+packaging==24.0
+pathspec==0.12.1
+platformdirs==4.2.0
+setuptools==69.5.1.post0
+setuptools-scm==8.0.4
+toml==0.10.2
+typing_extensions==4.11.0
+zipp==3.18.1
