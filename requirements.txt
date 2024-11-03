@@ -10,4 +10,4 @@ setuptools==69.5.1.post0
 setuptools-scm==8.0.4
 toml==0.10.2
 typing_extensions==4.11.0
-zipp==3.18.1
+zipp==3.19.1
