@@ -3,8 +3,9 @@
 import os
 import socket
 import urllib.request
-from importlib.metadata import PackageNotFoundError, version
 from typing import Optional
+
+from setuptools_scm import get_version as scm_version
 
 
 def get_license(logger) -> None:
@@ -39,18 +40,16 @@ def get_license(logger) -> None:
         logger.error("Could not read license")
 
 
-def get_version(logger):
+def get_version():
     """TODO: Docstring for get_version.
     :returns: TODO
 
     """
     try:
-        print(version(logger.name))
-    except PackageNotFoundError:
-        logger.error(
-            f"Package not found ({logger.name}). Ensure the package is installed or the version can be accessed."
-        )
-        print("Unknown")
+        version = scm_version(root="../..", relative_to=__file__)
+        print(f"tk {version}")
+    except:
+        logger.error("Could not get version info.")
 
 
 def init(logger) -> None:

@@ -19,7 +19,7 @@ def main():
     logger = init_logger(__name__, debug=args.verbose)
 
     if args.version:
-        get_version(logger)
+        get_version()
 
     elif args.init:
         init(logger)
