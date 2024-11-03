@@ -5,6 +5,8 @@ let
 in with pkgs; mkShell {
   packages = [
     ctags
+    pythonPackages.importlib-metadata
+    pythonPackages.setuptools-scm
     pythonPackages.python
     pythonPackages.black
     pythonPackages.isort

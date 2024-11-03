@@ -3,6 +3,7 @@
 import os
 import socket
 import urllib.request
+from importlib.metadata import PackageNotFoundError, version
 from typing import Optional
 
 
@@ -39,12 +40,18 @@ def get_license(logger) -> None:
         return None
 
 
-def get_version(logger) -> str:
+def get_version(logger):
     """TODO: Docstring for get_version.
     :returns: TODO
 
     """
-    pass
+    try:
+        print(version(logger.name))
+    except PackageNotFoundError:
+        logger.error(
+            f"Package not found ({logger.name}). Ensure the package is installed or the version can be accessed."
+        )
+        print("Unknown")
 
 
 def init(logger) -> None:
