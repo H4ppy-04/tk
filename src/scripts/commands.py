@@ -37,7 +37,6 @@ def get_license(logger) -> None:
             print(response.read().decode("utf-8"))
     else:
         logger.error("Could not read license")
-        return None
 
 
 def get_version(logger):
