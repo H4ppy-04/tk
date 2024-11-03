@@ -30,7 +30,7 @@ tk [args ...]
 |  **Command**  |            **Description**            | **Implemented** |                        **Comments**                       |
 |:-------------:|:-------------------------------------:|:---------------:|-----------------------------------------------------------|
 |  `--verbose`  | Display additional output information |       Yes       | See `--log-level` for specific handling                   |
-|  `--version`  | Display version information           |        No       |                                                           |
+|  `--version`  | Display version information           |        [Yes](https://github.com/H4ppy-04/tk/issues/2)       |                                                           |
 |  `--license`  | Display license information           |       Yes       | If no LICENSE file is present, output is read from GitHub |
 | `--log-level` | Set verbosity level                   |        No       |                                                           |
 |    `--init`   | Initialize task file(s)               |       Yes       | This command will overwrite any existing data             |
