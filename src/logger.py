@@ -9,15 +9,17 @@ def init_logger(name, debug=False):
     logger.setLevel(level)
 
     # Avoid duplicate handlers
-    if not logger.hasHandlers():
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(level)
+    if logger.hasHandlers():
+        return
 
-        formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
-        console_handler.setFormatter(formatter)
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(level)
 
-        logger.addHandler(console_handler)
+    formatter = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
 
     return logger
