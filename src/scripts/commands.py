@@ -40,7 +40,7 @@ def get_license(logger) -> None:
         logger.error("Could not read license")
 
 
-def get_version():
+def get_version(logger):
     """TODO: Docstring for get_version.
     :returns: TODO
 
@@ -67,23 +67,26 @@ def init(logger) -> None:
         :returns: TODO
 
         """
+        env_home = os.environ.get("HOME")
+        env_user = os.environ.get("USER")
+
         if os.environ.get("XDG_CONFIG_DIR") is not None:
             return os.environ.get("XDG_CONFIG_DIR")
-        elif os.environ.get("HOME") is not None and os.path.isdir(
-            os.path.join(os.environ.get("HOME"), ".config")
+        elif env_home is not None and os.path.isdir(os.path.join(env_home, ".config")):
+            if os.environ.get("HOME") is not None:
+                return os.path.join(env_home, ".config")
+        elif env_user is not None and os.path.isdir(
+            os.path.join("/", "home", env_user, ".config")
         ):
-            return os.path.join(os.environ.get("HOME"), ".config")
-        elif os.environ.get("USER") is not None and os.path.isdir(
-            os.path.join("/", "home", os.environ.get("USER"), ".config")
-        ):
-            return os.path.join("/", "home", os.environ.get("USER"), ".config")
+            return os.path.join("/", "home", env_user, ".config")
         else:
             return None
 
-    if get_config_directory() is None:
+    cfg = get_config_directory()
+    if cfg is None:
         return None
     else:
-        config_directory = os.path.join(get_config_directory(), "tk")
+        config_directory = os.path.join(cfg, "tk")
 
     if os.path.isdir(config_directory):
         for i in os.listdir(config_directory):

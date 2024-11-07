@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import argparse
-import logging
 import sys
 
 from logger import init_logger
@@ -19,7 +17,7 @@ def main():
     logger = init_logger(__name__, debug=args.verbose)
 
     if args.version:
-        get_version()
+        get_version(logger)
 
     elif args.init:
         init(logger)
