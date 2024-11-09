@@ -3,12 +3,13 @@
 import os
 import socket
 import urllib.request
+from logging import Logger
 from typing import Optional
 
 from setuptools_scm import get_version as scm_version
 
 
-def get_license(logger) -> None:
+def get_license(logger: Logger) -> None:
     """Reads local LICENSE file.
 
     As a fallback, reads the online file.
@@ -40,7 +41,7 @@ def get_license(logger) -> None:
         logger.error("Could not read license")
 
 
-def get_version(logger):
+def get_version(logger: Logger):
     """TODO: Docstring for get_version.
     :returns: TODO
 
@@ -52,7 +53,43 @@ def get_version(logger):
         logger.error("Could not get version info.")
 
 
-def init(logger) -> None:
+def get_task_file(logger: Logger) -> Optional[str]:
+    """TODO: Docstring for get_task_file.
+    :returns: TODO
+
+    """
+    config = get_config_directory()
+    logger.debug(f"get_config_directory returned {config}")
+    if config is None:
+        return None
+    file = os.path.join(config, "tk", "tasks.json")
+    if os.path.isfile(file):
+        return file
+
+
+def get_config_directory() -> Optional[str]:
+    """TODO: Docstring for get_config_directory.
+
+    :returns: TODO
+
+    """
+    env_home = os.environ.get("HOME")
+    env_user = os.environ.get("USER")
+
+    if os.environ.get("XDG_CONFIG_DIR") is not None:
+        return os.environ.get("XDG_CONFIG_DIR")
+    elif env_home is not None and os.path.isdir(os.path.join(env_home, ".config")):
+        if os.environ.get("HOME") is not None:
+            return os.path.join(env_home, ".config")
+    elif env_user is not None and os.path.isdir(
+        os.path.join("/", "home", env_user, ".config")
+    ):
+        return os.path.join("/", "home", env_user, ".config")
+    else:
+        return None
+
+
+def init(logger: Logger) -> None:
     """Initialize task files.
 
     This will also overwrite existing task data.
@@ -60,27 +97,6 @@ def init(logger) -> None:
     :returns: TODO
 
     """
-
-    def get_config_directory() -> Optional[str]:
-        """TODO: Docstring for get_config_directory.
-
-        :returns: TODO
-
-        """
-        env_home = os.environ.get("HOME")
-        env_user = os.environ.get("USER")
-
-        if os.environ.get("XDG_CONFIG_DIR") is not None:
-            return os.environ.get("XDG_CONFIG_DIR")
-        elif env_home is not None and os.path.isdir(os.path.join(env_home, ".config")):
-            if os.environ.get("HOME") is not None:
-                return os.path.join(env_home, ".config")
-        elif env_user is not None and os.path.isdir(
-            os.path.join("/", "home", env_user, ".config")
-        ):
-            return os.path.join("/", "home", env_user, ".config")
-        else:
-            return None
 
     cfg = get_config_directory()
     if cfg is None:

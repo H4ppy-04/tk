@@ -2,12 +2,14 @@ black==24.4.0
 click==8.1.7
 importlib_metadata==7.1.0
 isort==5.13.2
-mypy_extensions==1.0.0
+mypy-extensions==1.0.0
 packaging==24.0
 pathspec==0.12.1
 platformdirs==4.2.0
+python-dateutil==2.9.0.post0
 setuptools==70.0.0
 setuptools-scm==8.0.4
+six==1.16.0
 toml==0.10.2
 typing_extensions==4.11.0
 zipp==3.19.1
