@@ -9,3 +9,5 @@ env.bak/
 venv.bak/
 __pycache__/
 .ctagsignore
+build/
+*.egg-info/

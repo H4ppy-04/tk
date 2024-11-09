@@ -5,8 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tk"
 dynamic = ["version"]
-dependencies = [ "importlib-metadata>=7.1.0" ]
-requires-python = ">= 3.12.5"
+dependencies = [ "black==24.4.0", "click==8.1.7", "importlib_metadata==7.1.0", "isort==5.13.2", "mypy-extensions==1.0.0", "packaging==24.0", "pathspec==0.12.1", "platformdirs==4.2.0", "python-dateutil==2.9.0.post0", "setuptools==70.0.0", "setuptools-scm==8.0.4", "six==1.16.0", "toml==0.10.2", "typing_extensions==4.11.0", "zipp==3.19.1" ]
+requires-python = ">= 3.12.3"
 readme = "README.md"
 authors = [ {name = "Joshua Rose", email = "joshuarose@gmx.com"} ]
 maintainers = [ {name = "Joshua Rose", email = "joshuarose@gmx.com"} ]
@@ -27,7 +27,7 @@ Issues = "https://github.com/H4ppy-04/tk/issues"
 Changelog = "https://github.com/H4ppy-04/tk/blob/main/CHANGELOG.md"
 
 [project.scripts]
-main = "main:main"
+task = "main:main"
 
 [tool.setuptools]
 include-package-data = true
