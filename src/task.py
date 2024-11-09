@@ -82,30 +82,18 @@ class Task:
         """
         self.logger.debug(f"Attempting to load file data from {file}")
 
-        if isinstance(file, str):
-            if os.path.exists(file) is not True:
-                self.logger.critical(
-                    f"Failed to load file data from {file}: Path does not exist"
-                )
-            elif os.path.isfile(file) is not True:
-                self.logger.critical(
-                    f"Failed to load file data from {file}: Expected file (found directory)"
-                )
-            else:
-                with open(os.path.join(file)) as fd:
-                    return json.load(fd)
+        file_exists = os.path.exists(file) if isinstance(file, str) else file.exists()
+        file_isfile = os.path.exists(file) if isinstance(file, str) else file.exists()
+        file_name = file if isinstance(file, str) else file.name()
 
-        elif isinstance(file, Path):
-            if file.exists() is not True:
-                self.logger.critical(
-                    f"Failed to load file data from {file.name}: Path does not exist"
-                )
-            elif file.isfile() is not True:
-                self.logger.critical(
-                    f"Failed to load file data from {file.name}: Expected file (found directory)"
-                )
-            else:
-                with open(os.path.join(file.name)) as fd:
-                    return json.load(fd)
+        if file_exists is not True:
+            self.logger.critical(
+                f"Failed to load file data from {file_name}: Path does not exist"
+            )
+        elif file_isfile is not True:
+            self.logger.critical(
+                f"Failed to load file data from {file_name}: Expected file (found directory)"
+            )
         else:
-            raise TypeError
+            with open(os.path.join(file_name)) as fd:
+                return json.load(fd)
