@@ -33,7 +33,7 @@ def main():
         task_file = get_task_file(logger)
         if task_file is None:
             logger.critical(
-                "Run `python src/main.py --initialize` or specify a custom --datafile"
+                "Run `python src/main.py --init` or specify a custom --datafile"
             )
 
         logger.debug(
